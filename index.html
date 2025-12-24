@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nadia - Finance & Administration Specialist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #f1f5f9;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header Hero Section */
+        header {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 100px;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-label {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+        
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        
+        header .tagline {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+        }
+        
+        section:nth-child(even) {
+            background: var(--light-gray);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-label {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+        
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 16px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-top: 8px;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            color: var(--dark);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+        
+        .skill-box {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .skill-box:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+        
+        .skill-box h4 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .skill-box p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* Process Timeline */
+        .process-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+        
+        .process-step {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 48px;
+            position: relative;
+        }
+        
+        .step-number {
+            flex-shrink: 0;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .step-content {
+            flex: 1;
+            padding-top: 8px;
+        }
+        
+        .step-content h4 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .step-content p {
+            color: var(--gray);
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            gap: 40px;
+        }
+        
+        .project-card {
+            background: white;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s ease;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .project-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.15);
+        }
+        
+        .project-card h3 {
+            color: var(--dark);
+            margin-bottom: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .company {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
+        
+        .project-section {
+            margin-top: 20px;
+        }
+        
+        .section-title {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        
+        .project-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        /* Vision/Focus Cards */
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        
+        .focus-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .focus-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transition: all 0.6s ease;
+        }
+        
+        .focus-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .focus-card:hover::before {
+            top: -30%;
+            right: -30%;
+        }
+        
+        .focus-card h3 {
+            margin-bottom: 16px;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .focus-card p {
+            line-height: 1.7;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        
+        .footer-content {
+            text-align: center;
+        }
+        
+        footer h2 {
+            color: white;
+            margin-bottom: 16px;
+        }
+        
+        footer p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 32px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 24px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        
+        .contact-card h4 {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .contact-card p {
+            color: white;
+            font-weight: 500;
+        }
+        
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header .tagline {
+                font-size: 1.1rem;
+            }
+            
+            section h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+            
+            .project-card, .service-card, .focus-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label">Finance & Administration Expert</div>
+                <h1>Nadia</h1>
+                <p class="tagline">Structure. Accuracy. Growth.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="#projects" class="btn btn-secondary">View Projects</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#focus">Vision</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Introduction</div>
+                <h2>Who I Am</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a finance and administration specialist with over 10 years of experience in building efficient financial systems that drive business growth.</p>
+                    <p>I specialize in bookkeeping, financial administration, payment tracking, expense control, invoicing, and maintaining accurate financial records. I am detail-oriented, well-organized, and skilled in using AI tools to improve efficiency and accuracy in financial and administrative tasks.</p>
+                    <p>Each experience has strengthened my ability to manage accurate financial records, maintain organized administrative processes, and adapt to different business needs while ensuring consistency, compliance, and efficiency.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Expertise</div>
+                <h2>What I Do</h2>
+                <p class="section-subtitle">Comprehensive finance and administration services designed to streamline your business operations</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📚</div>
+                    <h3>Bookkeeping</h3>
+                    <p>Maintaining accurate and organized financial records for clear business insights and informed decision-making.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💰</div>
+                    <h3>Payment Tracking</h3>
+                    <p>Monitoring incoming and outgoing payments to ensure timely cash flow and financial stability.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📄</div>
+                    <h3>Invoicing</h3>
+                    <p>Creating and managing invoices efficiently to support revenue collection and client relationships.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💳</div>
+                    <h3>Expense Management</h3>
+                    <p>Controlling and categorizing business expenses for better budget control and cost optimization.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Financial Data Organization</h3>
+                    <p>Structuring financial data for easy access, analysis, and strategic planning.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🗂️</div>
+                    <h3>Administrative Support</h3>
+                    <p>Streamlining operational workflows to support smooth and efficient business operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Capabilities</div>
+                <h2>Skills Snapshot</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-box">
+                    <h4>Strategy</h4>
+                    <p>Structured finance and admin systems for efficient operations</p>
+                </div>
+                <div class="skill-box">
+                    <h4>Tools</h4>
+                    <p>Spreadsheets, bookkeeping software, and AI tools</p>
+                </div>
+                <div class="skill-box">
+                    <h4>Content</h4>
+                    <p>Invoices, financial records, reports, and documentation</p>
+                </div>
+                <div class="skill-box">
+                    <h4>Growth</h4>
+                    <p>Better cash flow, accuracy, and operational efficiency</p>
+                </div>
+                <div class="skill-box">
+                    <h4>Analytics</h4>
+                    <p>Reviewing data to ensure accuracy and identify improvements</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Methodology</div>
+                <h2>My Process</h2>
+                <p class="section-subtitle">A systematic approach to delivering exceptional financial and administrative results</p>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Discovery</h4>
+                        <p>Identifying financial and administrative needs through comprehensive analysis</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Planning</h4>
+                        <p>Creating clear task structures and workflow planning for optimal execution</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Research</h4>
+                        <p>Organizing data, systems, and tools to support efficient operations</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Execution</h4>
+                        <p>Handling bookkeeping and administrative tasks with precision and care</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Optimization</h4>
+                        <p>Improving efficiency with automation and AI-powered solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Case Studies</div>
+                <h2>Featured Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Bookkeeping & Expense Tracking Setup</h3>
+                    <p class="company">POMG RA Baitul Muttaqien</p>
+                    
+                    <div class="project-section">
+                        <p class="section-title">Role:</p>
+                        <p>Handled invoicing, tracked payments, and updated records. Set up and managed daily bookkeeping activities, categorized transactions, monitored expenses, and maintained clean financial data. Ensured all records were consistently updated and properly documented.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <p class="section-title">Goal:</p>
+                        <p>To establish a reliable bookkeeping system that ensures accurate tracking of income and expenses while maintaining well-organized financial records.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <p class="section-title">Outcome:</p>
+                        <p>Created structured and accurate financial records, reduced data inconsistencies, and delivered financial information that was ready for monthly review and decision-making.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Payment Tracking & Invoicing Management</h3>
+                    <p class="company">PT ADI RAYA CONSTRUCTION</p>
+                    
+                    <div class="project-section">
+                        <p class="section-title">Role:</p>
+                        <p>Managed invoice creation, monitored payment statuses, followed up on outstanding invoices, and updated payment records regularly to ensure accuracy.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <p class="section-title">Goal:</p>
+                        <p>To improve cash flow visibility and ensure timely tracking of incoming and outgoing payments.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <p class="section-title">Outcome:</p>
+                        <p>Improved payment control, reduced overdue invoices, and provided clear cash flow tracking for better financial planning.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Finance & Administrative Support</h3>
+                    <p class="company">PT CAS CONSTRUCTION</p>
+                    
+                    <div class="project-section">
+                        <p class="section-title">Role:</p>
+                        <p>Handled financial documentation, prepared basic reports, organized administrative files, and coordinated routine operational tasks to support business workflows.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <p class="section-title">Goal:</p>
+                        <p>To support smooth daily business operations through consistent finance and administrative processes.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <p class="section-title">Outcome:</p>
+                        <p>Streamlined administrative processes, improved record organization, and increased overall operational efficiency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="focus">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Future Direction</div>
+                <h2>Where I'm Going</h2>
+                <p class="section-subtitle">Committed to continuous growth and innovation in finance and administration</p>
+            </div>
+            <div class="focus-grid">
+                <div class="focus-card">
+                    <h3>💡 Financial Clarity</h3>
+                    <p>Helping businesses gain clear and reliable financial insights through organized systems and accurate reporting.</p>
+                </div>
+                <div class="focus-card">
+                    <h3>⚙️ Operational Efficiency</h3>
+                    <p>Streamlining finance and administrative workflows for smoother, more productive operations.</p>
+                </div>
+                <div class="focus-card">
+                    <h3>📈 Scalable Support</h3>
+                    <p>Building flexible systems that grow with your business and adapt to changing needs.</p>
+                </div>
+                <div class="focus-card">
+                    <h3>🤖 Smart Automation</h3>
+                    <p>Leveraging AI and modern tools to improve accuracy, productivity, and decision-making.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <h2>Let's Connect</h2>
+                <p>I'm always open to discussing finance and administration opportunities, collaborations, or connecting with fellow professionals.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h4>Email</h4>
+                        <p>your-email@example.com</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💼</div>
+                        <h4>LinkedIn</h4>
+                        <p>linkedin.com/in/yourprofile</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <h4>Phone</h4>
+                        <p>+62 XXX-XXXX-XXXX</p>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Nadia. Structure. Accuracy. Growth.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
